@@ -1,26 +1,19 @@
-version: '3.9'
+version: '3.1'
 services:
   mysql:
     image: mysql:8.0
     container_name: myblog-mysql
     restart: unless-stopped
     environment:
-      - MYSQL_ROOT_PASSWORD=secret
-      - MYSQL_DATABASE=my_blog
+      - MYSQL_ROOT_PASSWORD=example
+      # 你自己的数据库名称
+      - MYSQL_DATABASE=mmblog 
       - TZ=UTC
     ports:
-      - '3306:3306'
+      - '3307:3306'
     volumes:
-      - mysql_data:/var/lib/mysql
+      - ./mysql_data:/var/lib/mysql
     command: ["mysqld", "--default-authentication-plugin=mysql_native_password", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
-
-  adminer:
-    image: adminer:4
-    restart: unless-stopped
-    ports:
-      - '8080:8080'
-    depends_on:
-      - mysql
 
 volumes:
   mysql_data: 
