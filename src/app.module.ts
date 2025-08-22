@@ -14,6 +14,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: process.env.DB_USER || 'root',
       password: process.env.DB_PASS || 'root',
       database: process.env.DB_NAME || 'my_blog',
+      entities: [__dirname + '/**/*.entity{.ts,.js}'], // 这个加上才能识别实体，才能创建表
       autoLoadEntities: true, // ??
       synchronize: true, //??
       timezone: 'Z', //??
