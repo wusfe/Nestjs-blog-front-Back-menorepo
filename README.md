@@ -254,3 +254,26 @@ blog-backend/
 6. 掌握现代Web开发的最佳实践
 
 您准备好开始这个TypeORM版本的速成项目了吗？我可以为您提供详细的开发步骤和代码实现。
+
+## 你学到了什么
+
+### 后端
+
+- 全局管道
+- 路由守卫
+
+
+#### 路由执行流程里大概
+
+Middleware → Guard → Interceptor(before) → Pipe → Controller → Service
+                                    ↑
+                           Interceptor(after)
+
+#### 路由守卫
+A 先执行路由守卫 -> 判断库中是否存在该用户 B
+B 不存在 -> 提示未授权
+B 存在 -> 生成jwt Token C
+C  -> 返回前端 D
+
+
+

@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,6 +22,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       timezone: 'Z', //??
       charset: 'utf8mb4_unicode_ci', // ??
     }),
+    UsersModule, 
+    /**
+     * // UsersModule要想使用鉴权模块AuthModule
+     * 
+     * 1. AuthModule必须要导出自身
+     * 2. app.module.ts中import AuthModule
+     * 
+     */
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
