@@ -270,10 +270,10 @@ Middleware → Guard → Interceptor(before) → Pipe → Controller → Service
                            Interceptor(after)
 
 #### 路由守卫
-A 先执行路由守卫 -> 判断库中是否存在该用户 B
-B 不存在 -> 提示未授权
-B 存在 -> 生成jwt Token C
-C  -> 返回前端 D
+A 先执行路由守卫 -> 判断库中是否存在该用户 B  
+B 不存在 -> 提示未授权  
+B 存在 -> 生成jwt Token C  
+C  -> 返回前端 D  
 
 
 

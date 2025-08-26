@@ -10,9 +10,9 @@ export class CreatePostDto {
   @IsNotEmpty()
   content: string;
 
-  @IsOptional()
-  @IsInt()
-  @IsPositive()
+  @IsOptional() // 表示该字段是可选的，如果没传就跳过验证
+  @IsInt() // 检查值是否是整数
+  @IsPositive() // 检查值是否是正数
   categoryId?: number;
 
   @IsOptional()

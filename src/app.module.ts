@@ -9,6 +9,7 @@ import { PostsModule } from './posts/posts.module';
 import { CategoriesModule } from './categories/categories.module';
 import { TagsModule } from './tags/tags.module';
 import { CommentsModule } from './comments/comments.module';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { CommentsModule } from './comments/comments.module';
       synchronize: true, //??
       timezone: 'Z', //??
       charset: 'utf8mb4_unicode_ci', // ??
+      // logging: true // 开启sql查询日志
     }),
     UsersModule, 
     /**
@@ -39,6 +41,7 @@ import { CommentsModule } from './comments/comments.module';
     CategoriesModule,
     TagsModule,
     CommentsModule,
+    FilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

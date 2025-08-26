@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcryptjs';
 
 
@@ -35,6 +36,9 @@ export class UsersService {
   }
 
   async findById(id: number): Promise<User> {
+    if(!id){
+      throw new NotFoundException('userId 不能为空');
+    }
     const user = await this.userRepository.findOne({ where: { id } });
     if (!user) throw new NotFoundException('User not found');
     return user;
@@ -44,7 +48,32 @@ export class UsersService {
     return this.userRepository.findOne({ where: { username } });
   }
 
+  async updateUser(id:number, dto:UpdateUserDto){
+    let user = await this.findById(id)
+
+   
+    if(!user){
+      throw new NotFoundException('User not found')
+    }
+
+    user.username = dto.username;
+    user.email = dto.email;
+    user.passwordHash = await bcrypt.hash(dto.password, 10);
+
+    return this.userRepository.save(user)
+  }
   async validatePassword(user: User, password: string): Promise<boolean> {
     return bcrypt.compare(password, user.passwordHash);
+  }
+
+  async remove(id: number){
+    let user = await this.findById(id)
+
+   
+     if(!user){
+      throw new NotFoundException('User not found')
+    }
+    return this.userRepository.remove(user)
+
   }
 } 

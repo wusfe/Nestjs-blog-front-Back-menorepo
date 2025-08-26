@@ -76,6 +76,8 @@ export class PostsService {
         post.category = null;
       } else if (typeof updateDto.categoryId === 'number') {
         const category = await this.categoryRepository.findOne({ where: { id: updateDto.categoryId } });
+        console.log( updateDto.categoryId, '121212');
+        
         post.category = category ?? null;
       }
     }

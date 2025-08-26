@@ -14,7 +14,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   
   async validate(payload: any) {
     // 这里先执行1
-    console.log(payload, 2);
+    console.log(payload, 'AuthGuard-1');
     
     return { userId: payload.sub, username: payload.username};
   }
